@@ -5,15 +5,17 @@
 [general]
 name=Create Relation
 qgisMinimumVersion=3.0
-description=Crea relazioni trale tabelle degli attributi dei layer
-version=0.1
+description=Create one-to-one, one-to-many, and many-to-many relationships between vector layer attribute tables. (Crea relazioni uno-a-uno, uno-a-molti e molti-a-molti tra le tabelle degli attributi dei livelli vettoriali)
+version=0.2
 author=dr. Geol. Faustino Cetraro
 email=geol-faustino@libero.it
 
-about=Crea relazioni trale tabelle degli attributi dei layer
+about=It allows you to define a one-to-one (1:1), one-to-many (1:N) or many-to-many (N:M) relationship between two attribute tables of vector layers loaded in QGIS. You can select the parent layer with its link field, the child layer with its field, and specify the type of relationship to create. In the case of a many-to-many relationship, an intermediate link table is automatically generated, which you can assign a custom name to and save in Shapefile or GeoJSON formats.
 
-tracker=http://bugs
-repository=http://repo
+Permette di definire una relazione di tipo uno-a-uno (1:1), uno-a-molti (1:N) o molti-a-molti (N:M) tra due tabelle degli attributi di layer vettoriali caricati in QGIS. È possibile selezionare il layer padre con il relativo campo di collegamento, il layer figlio con il proprio campo, e specificare il tipo di relazione da creare. Nel caso di una relazione molti-a-molti, viene generata automaticamente una tabella di collegamento intermedia, alla quale è possibile assegnare un nome personalizzato e salvarla nei formati Shapefile o GeoJSON.
+
+tracker=https://github.com/drFaustino/create_relation
+repository=https://github.com/drFaustino/create_relation
 # End of mandatory metadata
 
 # Recommended items:
@@ -25,7 +27,7 @@ hasProcessingProvider=no
 # Tags are comma separated with spaces allowed
 tags=analysis, attribute, attribute table, database, field, join, layers, table, vector, relations
 
-homepage=http://homepage
+homepage=https://github.com/drFaustino/create_relation
 category=Database
 icon=icon.png
 # experimental flag
