@@ -6,7 +6,7 @@
 name=Create Relation
 qgisMinimumVersion=3.0
 description=Create one-to-one, one-to-many, and many-to-many relationships between vector layer attribute tables. (Crea relazioni uno-a-uno, uno-a-molti e molti-a-molti tra le tabelle degli attributi dei livelli vettoriali)
-version=0.2
+version=0.3
 author=dr. Geol. Faustino Cetraro
 email=geol-faustino@libero.it
 

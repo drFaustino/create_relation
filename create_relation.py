@@ -57,10 +57,7 @@ class CreateRelation:
         self.plugin_dir = os.path.dirname(__file__)
         # initialize locale
         locale = str(QSettings().value('locale/userLocale'))[0:2]
-        locale_path = os.path.join(
-            self.plugin_dir,
-            'i18n',
-            'create_relation_{}.qm'.format(locale))
+        locale_path = os.path.join(self.plugin_dir, 'i18n', f'create_relation_{locale}.qm')
 
         if os.path.exists(locale_path):
             self.translator = QTranslator()
