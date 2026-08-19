@@ -1,38 +1,119 @@
 # Create Relation (Crea Relazioni)
 
-## Create one-to-one, one-to-many, and many-to-many relationships between vector layer attribute tables. (Crea relazioni uno-a-uno, uno-a-molti e molti-a-molti tra le tabelle degli attributi dei livelli vettoriali).
+**Create and manage one-to-one, one-to-many and many-to-many relationships between vector layer attribute tables, directly from a QGIS panel.**
 
-It allows you to define a one-to-one (1:1), one-to-many (1:N) or many-to-many (N:M) relationship between two attribute tables of vector layers loaded in QGIS. You can select the parent layer with its link field, the child layer with its field, and specify the type of relationship to create. In the case of a many-to-many relationship, an intermediate link table is automatically generated, which you can assign a custom name to and save in Shapefile or GeoJSON formats.
+> Crea e gestisce relazioni uno-a-uno, uno-a-molti e molti-a-molti tra le tabelle degli attributi di layer vettoriali, direttamente da un pannello di QGIS.
 
-> Permette di definire una relazione di tipo uno-a-uno (1:1), uno-a-molti (1:N) o molti-a-molti (N:M) tra due tabelle degli attributi di layer vettoriali caricati in QGIS. È possibile selezionare il layer padre con il relativo campo di collegamento, il layer figlio con il proprio campo, e specificare il tipo di relazione da creare. Nel caso di una relazione molti-a-molti, viene generata automaticamente una tabella di collegamento intermedia, alla quale è possibile assegnare un nome personalizzato e salvarla nei formati Shapefile o GeoJSON.
+Version / Versione: **1.0** — QGIS 3.28+ and QGIS 4.x (Qt6) / QGIS 3.28+ e QGIS 4.x (Qt6)
 
-### Operating modes (Modalità operative)
-To get started, you need to load at least two vector layers containing attributes into your QGIS project, so that you can establish a relationship between their tables. Next, you select the layer to be used as the parent table and the layer to be used as the child table, indicating the related link fields. Once you have set the layers and fields, you choose the type of relationship to create: one-to-one (1:1), one-to-many (1:N) or many-to-many (N:M).
+---
 
-In the case of a many-to-many relationship, an intermediate link table ("link table") is automatically generated, to which you can assign a custom name. If no name is specified, a default name will be assigned: "ponte_n_m". This table is initially created as a virtual entity within the QGIS project.
+## Features (Funzionalità)
 
-There is also an option to save the bridge table in Shapefile or GeoJSON format, choosing the destination path via a dialog box. At the bottom of the tool window there is a text box that displays messages and warnings related to the various processes performed.
+- One-to-one (1:1), one-to-many (1:N) and many-to-many (N:M) relation creation.
+- For N:M relations, an intermediate **bridge table** is generated automatically, with the two foreign keys and both QGIS relations (parent → bridge, child → bridge) registered for you.
+- Optional prefill of the bridge table with every possible parent/child combination, with a warning before generating large numbers of records.
+- Optional export of the bridge table to **GeoPackage**, **GeoJSON** or **Shapefile**, with automatic reload of the saved layer into the project.
+- Built-in tools: open the attribute table of the selected layer, inspect and delete project relations, open project properties, inspect and remove layer joins.
+- Detailed, timestamped processing log and progress bar.
+- Full English translation alongside the Italian source strings (see [Translations](#translations-traduzioni) below).
 
-> Per iniziare, è necessario caricare nel progetto QGIS almeno due layer vettoriali contenenti attributi, in modo da poter stabilire una relazione tra le rispettive tabelle. Successivamente, si selezionano il layer da utilizzare come tabella padre e quello da utilizzare come tabella figlio, indicando i relativi campi di collegamento. Una volta impostati i layer e i campi, si sceglie il tipo di relazione da creare: uno-a-uno (1:1), uno-a-molti (1:N) o molti-a-molti (N:M).
+> - Creazione di relazioni uno-a-uno (1:1), uno-a-molti (1:N) e molti-a-molti (N:M).
+> - Per le relazioni N:M viene generata automaticamente una **tabella ponte** intermedia, con le due chiavi esterne, e vengono registrate entrambe le relazioni QGIS (padre → ponte, figlio → ponte).
+> - Precompilazione opzionale della tabella ponte con tutte le combinazioni possibili padre/figlio, con avviso preventivo in caso di un numero elevato di record.
+> - Esportazione opzionale della tabella ponte in **GeoPackage**, **GeoJSON** o **Shapefile**, con ricaricamento automatico del layer salvato nel progetto.
+> - Strumenti integrati: apertura della tabella attributi del layer selezionato, ispezione ed eliminazione delle relazioni di progetto, apertura delle proprietà del progetto, ispezione e rimozione dei join di un layer.
+> - Log di elaborazione dettagliato con timestamp e barra di avanzamento.
+> - Traduzione inglese completa, accanto alle stringhe sorgente in italiano (vedi [Traduzioni](#translations-traduzioni)).
 
-> Nel caso di una relazione molti-a-molti, viene generata automaticamente una tabella di collegamento intermedia ("tabella ponte"), alla quale è possibile assegnare un nome personalizzato. Se non viene specificato alcun nome, ne verrà attribuito uno predefinito: ponte_n_m. Questa tabella viene inizialmente creata come entità virtuale all'interno del progetto QGIS.
+---
 
-> È inoltre disponibile un'opzione per salvare la tabella ponte in formato Shapefile o GeoJSON, scegliendo il percorso di destinazione tramite una finestra di dialogo. In fondo alla finestra dello strumento è presente un riquadro di testo che mostra messaggi e avvisi relativi ai vari processi eseguiti.
+## Requirements (Requisiti)
 
-### Relation one-to-one (Relazione 1:1)
-![img1a](https://github.com/user-attachments/assets/c19575bb-c05d-47d3-9b0d-e337153f0f2b)
+- QGIS **3.28** or later, including QGIS **4.x** built on Qt6.
+- No external Python dependencies: the plugin only uses PyQGIS and PyQt.
 
-### Relation one-to-many (Relazione 1:N)
-![img2](https://github.com/user-attachments/assets/55219c03-c8cc-4caf-8d00-443fe65ba211)
+> - QGIS **3.28** o superiore, incluso QGIS **4.x** basato su Qt6.
+> - Nessuna dipendenza Python esterna: il plugin utilizza solo PyQGIS e PyQt.
 
-### Relation many-to-many (Relazione N:M)
-![img3](https://github.com/user-attachments/assets/f8c3aef7-ae79-4c7f-ba9e-ad8708740907)
+---
 
-### View relationships (Visualizzare le relazioni)
-To view relations in QGIS, you can follow these methods depending on the type of relation:
-+ 1:1 relation (Join): select the parent layer in the Layers panel, right-click and choose Properties. In the window that opens, go to the Join tab to view the created relation.
-+ 1:N and N:M relations: open the Project menu and select Project Properties. Inside the window, go to the Relations tab to view all the relations defined between the tables.
-  
-> Per visualizzare le relazioni in QGIS, è possibile seguire queste modalità a seconda del tipo di relazione:
-> + Relazione 1:1 (Join): selezionare il layer padre nel pannello Layer, fare clic con il tasto destro e scegliere Proprietà. Nella finestra che si apre, accedere alla scheda Join per visualizzare la relazione creata.
-> + Relazioni 1:N e N:M: aprire il menu Progetto e selezionare Proprietà del progetto. All'interno della finestra, andare alla scheda Relazioni per visualizzare tutte le relazioni definite tra le tabelle.
+## Installation (Installazione)
+
+1. Download the `create_relation.zip` archive (or clone this repository).
+2. In QGIS, go to **Plugins → Manage and Install Plugins → Install from ZIP**, and select the archive — or copy the `create_relation` folder into your QGIS plugins directory:
+   - Windows: `C:\Users\<user>\AppData\Roaming\QGIS\QGIS3\profiles\<profile>\python\plugins`
+   - Linux: `~/.local/share/QGIS/QGIS3/profiles/<profile>/python/plugins`
+   - macOS: `~/Library/Application Support/QGIS/QGIS3/profiles/<profile>/python/plugins`
+3. Enable **Create Relation** from the QGIS Plugin Manager.
+4. The plugin adds a toolbar icon and a **Create Relation** entry under the Plugins menu.
+
+> 1. Scaricare l'archivio `create_relation.zip` (oppure clonare questo repository).
+> 2. In QGIS, andare su **Plugin → Gestisci e installa plugin → Installa da ZIP** e selezionare l'archivio — oppure copiare la cartella `create_relation` nella cartella dei plugin di QGIS:
+>    - Windows: `C:\Users\<utente>\AppData\Roaming\QGIS\QGIS3\profiles\<profilo>\python\plugins`
+>    - Linux: `~/.local/share/QGIS/QGIS3/profiles/<profilo>/python/plugins`
+>    - macOS: `~/Library/Application Support/QGIS/QGIS3/profiles/<profilo>/python/plugins`
+> 3. Abilitare **Create Relation** dal Gestore plugin di QGIS.
+> 4. Il plugin aggiunge un'icona sulla barra degli strumenti e una voce **Create Relation** nel menu Plugin.
+
+---
+
+## Usage (Utilizzo)
+
+Load at least two vector layers with attribute tables into the project. In the dialog:
+
+1. Choose the **parent table** (layer and key field) and the **child table** (layer and foreign field).
+2. Choose the relation **type**: one-to-one, one-to-many or many-to-many. The information panel explains the selected type and previews the structure that will be created.
+3. For a many-to-many relation, the **N:M bridge table options** panel appears:
+   - optionally set a custom name for the bridge table (default: `<parent>_<child>_bridge`);
+   - optionally tick **prefill with every possible combination** — a confirmation is requested if this would generate a large number of records;
+   - optionally tick **save bridge table to disk**, choosing GeoPackage, GeoJSON or Shapefile.
+4. Click **Create relation**. Progress and outcome are reported in the processing log.
+5. Use the **Tools** row at any time to open the attribute table of the currently selected layer, inspect/delete the project's relations, open the project properties, or inspect/remove a layer's joins.
+
+> Caricare nel progetto almeno due layer vettoriali con tabelle degli attributi. Nella finestra del plugin:
+>
+> 1. Scegliere la **tabella padre** (layer e campo chiave) e la **tabella figlio** (layer e campo esterno).
+> 2. Scegliere il **tipo** di relazione: uno-a-uno, uno-a-molti o molti-a-molti. Il pannello informativo spiega il tipo selezionato e anticipa la struttura che verrà creata.
+> 3. Per una relazione molti-a-molti compare il pannello **Opzioni tabella ponte N:M**:
+>    - è possibile impostare un nome personalizzato per la tabella ponte (predefinito: `<padre>_<figlio>_bridge`);
+>    - è possibile spuntare **precompila tutte le combinazioni possibili** — viene richiesta conferma se ciò generasse un numero elevato di record;
+>    - è possibile spuntare **salva tabella ponte su disco**, scegliendo GeoPackage, GeoJSON o Shapefile.
+> 4. Fare clic su **Crea relazione**. L'avanzamento e l'esito vengono riportati nel log di elaborazione.
+> 5. In qualsiasi momento è possibile usare la riga **Strumenti** per aprire la tabella attributi del layer selezionato, ispezionare/eliminare le relazioni del progetto, aprire le proprietà del progetto, oppure ispezionare/rimuovere i join di un layer.
+
+### Viewing relations afterwards (Visualizzare le relazioni in seguito)
+
+- **1:N and N:M relations**: Project menu → Project Properties → Relations tab, or the **Relazioni del progetto** tool inside the plugin, which also allows deleting a relation.
+- **Joins** (e.g. created outside the plugin): layer Properties → Joins tab, or the **Visualizza join** tool inside the plugin.
+
+> - **Relazioni 1:N e N:M**: menu Progetto → Proprietà del progetto → scheda Relazioni, oppure lo strumento **Relazioni del progetto** interno al plugin, che consente anche di eliminare una relazione.
+> - **Join** (ad es. creati al di fuori del plugin): Proprietà del layer → scheda Join, oppure lo strumento **Visualizza join** interno al plugin.
+
+---
+
+## Changelog
+
+**1.0**
+- Fixed a bug where creating or deleting a relation (including the parent → bridge table leg of an N:M relation) could report a false "QGIS non ha accettato/potuto eliminare la relazione" error even though the operation actually succeeded. Success is now verified by re-querying the relation manager instead of trusting the return value of `addRelation()`/`removeRelation()`.
+- Bridge table fields are now built with a Qt6/QMetaType-aware helper, with a fallback for QGIS 3.28–3.3x (Qt5).
+- Added SVG icons to every button.
+- Added the full English translation and the `i18n/` translation project described above.
+- Complete redesign of the plugin interface, robust N:M bridge table creation with optional prefill and export, project relation and join inspection tools, processing log and progress bar.
+
+> **1.0**
+> - Corretto un bug per cui la creazione o l'eliminazione di una relazione (compreso il ramo padre → tabella ponte di una relazione N:M) poteva segnalare un falso errore "QGIS non ha accettato/potuto eliminare la relazione" anche quando l'operazione era in realtà riuscita. L'esito viene ora verificato interrogando di nuovo il relation manager, invece di fidarsi del valore restituito da `addRelation()`/`removeRelation()`.
+> - I campi della tabella ponte vengono ora creati con un helper compatibile Qt6/QMetaType, con fallback per QGIS 3.28–3.3x (Qt5).
+> - Aggiunte icone SVG a tutti i pulsanti.
+> - Aggiunta la traduzione inglese completa e il progetto di traduzione `i18n/` descritto sopra.
+> - Redesign completo dell'interfaccia del plugin, creazione robusta della tabella ponte N:M con precompilazione ed esportazione opzionali, strumenti di ispezione delle relazioni di progetto e dei join, log di elaborazione e barra di avanzamento.
+
+---
+
+## License (Licenza)
+
+See [LICENSE](LICENSE) / [LICENSE.md](LICENSE.md).
+
+## Author (Autore)
+
+dr. Geol. Faustino Cetraro

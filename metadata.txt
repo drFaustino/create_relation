@@ -1,49 +1,50 @@
-# This file contains metadata for your plugin.
-
-# This file should be included when you package your plugin.# Mandatory items:
-
 [general]
 name=Create Relation
-qgisMinimumVersion=3.0
-description=Create one-to-one, one-to-many, and many-to-many relationships between vector layer attribute tables. (Crea relazioni uno-a-uno, uno-a-molti e molti-a-molti tra le tabelle degli attributi dei livelli vettoriali)
-version=0.3
+qgisMinimumVersion=3.28
+qgisMaximumVersion=4.99
+
+description=Create and manage one-to-one, one-to-many and many-to-many relationships between vector layer attribute tables.
+
+version=1.0
+
 author=dr. Geol. Faustino Cetraro
 email=geol-faustino@libero.it
 
-about=It allows you to define a one-to-one (1:1), one-to-many (1:N) or many-to-many (N:M) relationship between two attribute tables of vector layers loaded in QGIS. You can select the parent layer with its link field, the child layer with its field, and specify the type of relationship to create. In the case of a many-to-many relationship, an intermediate link table is automatically generated, which you can assign a custom name to and save in Shapefile or GeoJSON formats.
-
-Permette di definire una relazione di tipo uno-a-uno (1:1), uno-a-molti (1:N) o molti-a-molti (N:M) tra due tabelle degli attributi di layer vettoriali caricati in QGIS. È possibile selezionare il layer padre con il relativo campo di collegamento, il layer figlio con il proprio campo, e specificare il tipo di relazione da creare. Nel caso di una relazione molti-a-molti, viene generata automaticamente una tabella di collegamento intermedia, alla quale è possibile assegnare un nome personalizzato e salvarla nei formati Shapefile o GeoJSON.
+about=Create and manage one-to-one (1:1), one-to-many (1:N) and many-to-many (N:M) relationships between vector layer attribute tables. The plugin provides an interactive explanation of the selected relationship, detailed processing logs, progress feedback, attribute table and form access, project relationship inspection and join inspection. Many-to-many relationships are implemented through an automatically generated bridge table, which can optionally be prefilled and saved to GeoPackage, GeoJSON or Shapefile.
 
 tracker=https://github.com/drFaustino/create_relation
 repository=https://github.com/drFaustino/create_relation
-# End of mandatory metadata
-
-# Recommended items:
 
 hasProcessingProvider=no
-# Uncomment the following line and add your changelog:
-# changelog=
 
-# Tags are comma separated with spaces allowed
-tags=analysis, attribute, attribute table, database, field, join, layers, table, vector, relations
+changelog=1.0
+    - Complete redesign of the plugin interface
+    - Improved one-to-one and one-to-many relation creation
+    - Robust many-to-many bridge table creation
+    - Optional N:M bridge prefill
+    - Optional bridge table export
+    - Automatic reload of the saved bridge layer
+    - Detailed processing log
+    - Progress bar with automatic reset
+    - Relation information panel
+    - Attribute table and form tools
+    - Project relation inspection
+    - Join inspection
+    - Italian translation support
+    - QGIS 3.28+ and QGIS 4.x compatibility
+    - QMetaType based QgsField creation
+    - QgsVectorFileWriter.writeAsVectorFormatV3
+
+tags=analysis, attribute, attribute table, database, field, join, layers, table, vector, relations, many-to-many
 
 homepage=https://github.com/drFaustino/create_relation
+
 category=Database
+
 icon=icon.png
-# experimental flag
+
 experimental=False
 
-# deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
 
-# Since QGIS 3.8, a comma separated list of plugins to be installed
-# (or upgraded) can be specified.
-# Check the documentation for more information.
-# plugin_dependencies=
-
-Category of the plugin: Raster, Vector, Database or Web
-# category=
-
-# If the plugin can run on QGIS Server.
 server=False
-
