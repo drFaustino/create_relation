@@ -108,6 +108,15 @@ Load at least two vector layers with attribute tables into the project. In the d
 > - Aggiunta la traduzione inglese completa e il progetto di traduzione `i18n/` descritto sopra.
 > - Redesign completo dell'interfaccia del plugin, creazione robusta della tabella ponte N:M con precompilazione ed esportazione opzionali, strumenti di ispezione delle relazioni di progetto e dei join, log di elaborazione e barra di avanzamento.
 
+**1.1**
+- Fixed plugin language and translation handling
+- Fixed translation context mismatch between the Python interface and translation files
+- Improved English translation of the plugin user interface
+- Translated dialog labels, buttons, group boxes, relation types and interface elements
+- Fixed untranslated or partially translated interface strings
+- Improved consistency between source strings and translated strings
+- Preserved dynamic placeholders and formatted relation information during translation
+- Improved multilingual compatibility of the plugin interface
 ---
 
 ## License (Licenza)
