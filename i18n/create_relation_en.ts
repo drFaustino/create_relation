@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en">
+<TS version="2.1" language="en_US">
 <context>
-    <name>CreateRelation</name>
+    <name>CreateRelationDialog</name>
     <message>
         <source>&amp;Create Relation</source>
-        <translation>&amp;Crea relazione</translation>
+        <translation>&amp;Create Relation</translation>
     </message>
     <message>
         <source>Create Relation</source>

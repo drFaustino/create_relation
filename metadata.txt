@@ -5,7 +5,7 @@ qgisMaximumVersion=4.99
 
 description=Create and manage one-to-one, one-to-many and many-to-many relationships between vector layer attribute tables.
 
-version=1.0
+version=1.1
 
 author=dr. Geol. Faustino Cetraro
 email=geol-faustino@libero.it
@@ -17,23 +17,15 @@ repository=https://github.com/drFaustino/create_relation
 
 hasProcessingProvider=no
 
-changelog=1.0
-    - Complete redesign of the plugin interface
-    - Improved one-to-one and one-to-many relation creation
-    - Robust many-to-many bridge table creation
-    - Optional N:M bridge prefill
-    - Optional bridge table export
-    - Automatic reload of the saved bridge layer
-    - Detailed processing log
-    - Progress bar with automatic reset
-    - Relation information panel
-    - Attribute table and form tools
-    - Project relation inspection
-    - Join inspection
-    - Italian translation support
-    - QGIS 3.28+ and QGIS 4.x compatibility
-    - QMetaType based QgsField creation
-    - QgsVectorFileWriter.writeAsVectorFormatV3
+changelog=1.1
+    - Fixed plugin language and translation handling
+    - Fixed translation context mismatch between the Python interface and translation files
+    - Improved English translation of the plugin user interface
+    - Translated dialog labels, buttons, group boxes, relation types and interface elements
+    - Fixed untranslated or partially translated interface strings
+    - Improved consistency between source strings and translated strings
+    - Preserved dynamic placeholders and formatted relation information during translation
+    - Improved multilingual compatibility of the plugin interface
 
 tags=analysis, attribute, attribute table, database, field, join, layers, table, vector, relations, many-to-many
 

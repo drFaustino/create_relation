@@ -65,63 +65,70 @@ class CreateRelation:
     TYPE_ONE_TO_MANY = "one_to_many"
     TYPE_MANY_TO_MANY = "many_to_many"
 
-    def __init__(self, iface):
-        self.iface = iface
-
-        self.plugin_dir = os.path.dirname(__file__)
-
-        self.actions = []
-        self.menu = self.tr("&Create Relation")
-
-        self.first_start = True
-        self.dlg = None
-
-        self.translator = None
-
-        self._attribute_forms = []
-        self._last_bridge_layer_id = None
-
-        self._load_translation()
-
     # ==============================================================
     # TRANSLATION
     # ==============================================================
 
     def tr(self, message):
         return QCoreApplication.translate(
-            "CreateRelation",
+            "CreateRelationDialog",
             message,
         )
+        
+    def __init__(self, iface):
+        self.iface = iface
+    
+        self.plugin_dir = os.path.dirname(__file__)
+    
+        self.actions = []
+    
+        self.first_start = True
+        self.dlg = None
+    
+        self.translator = None
+    
+        self._attribute_forms = []
+        self._last_bridge_layer_id = None
+    
+        # Prima carico la lingua
+        self._load_translation()
+    
+        # Poi uso self.tr()
+        self.menu = self.tr("&Create Relation")
+
 
     def _load_translation(self):
-        """Load plugin translation."""
-
-        locale = str(
-            QSettings().value(
-                "locale/userLocale",
-                "en",
-            )
+        """Load plugin translation according to QGIS locale."""
+    
+        locale = QSettings().value(
+            "locale/userLocale",
+            "en",
         )
-
-        locale = locale.replace("-", "_")
-
-        locale_short = locale.split("_")[0]
-
+    
+        if not locale:
+            locale = "en"
+    
+        locale = str(locale).replace("-", "_")
+    
+        locale_short = locale.split("_")[0].lower()
+    
         locale_path = os.path.join(
             self.plugin_dir,
             "i18n",
             f"create_relation_{locale_short}.qm",
         )
-
-        if not os.path.exists(locale_path):
+    
+        if not os.path.isfile(locale_path):
             return
-
-        self.translator = QTranslator()
-
-        if self.translator.load(locale_path):
+    
+        translator = QTranslator()
+    
+        if translator.load(locale_path):
             QCoreApplication.installTranslator(
-                self.translator
+                translator
             )
+
+        self.translator = translator
 
     # ==============================================================
     # GUI

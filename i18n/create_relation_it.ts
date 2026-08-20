@@ -2,14 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="it_IT">
 <context>
-    <name>CreateRelation</name>
+    <name>CreateRelationDialog</name>
     <message>
         <source>&amp;Create Relation</source>
-        <translation>&amp;Crea relazione</translation>
+        <translation>&amp;Create Relation</translation>
     </message>
     <message>
         <source>Create Relation</source>
-        <translation>Crea relazione</translation>
+        <translation>Create Relation</translation>
     </message>
     <message>
         <source>Create and manage layer relations</source>
